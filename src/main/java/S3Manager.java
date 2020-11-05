@@ -1,14 +1,15 @@
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.BasicSessionCredentials;
+import com.amazonaws.auth.*;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import org.springframework.stereotype.Component;
 
-import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
-import software.amazon.awssdk.auth.credentials.AwsSessionCredentials;
-import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.*;
+import software.amazon.awssdk.core.ResponseBytes;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.*;
@@ -23,7 +24,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.time.Clock;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,21 +33,35 @@ public class S3Manager {
 
     private S3Client s3;
 
-    private final Region DEFAULT_REGION = Region.US_WEST_2;
+    private final Region DEFAULT_REGION_S3Client = Region.US_WEST_2;
 
-    private S3Client getClient() {
-        s3 = S3Client.builder()
-                //this credentials provider lets us use AWS secret key and secret access key from the specific bucket
-                .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
+    private final Regions DEFAULT_REGION_AmazonS3 = Regions.US_WEST_2;
+
+    private final BasicAWSCredentials credentials = new BasicAWSCredentials(
+            "INSERT",
+            "INSERT");
+
+    private final AwsBasicCredentials awsCreds = AwsBasicCredentials.create(
+            "INSERT",
+            "INSERT");
+
+
+    public S3Client getClient() {
+        return S3Client.builder()
                 //default region is given above
-                .region(DEFAULT_REGION)
+                .region(DEFAULT_REGION_S3Client)
+                //this credentials provider lets us use AWS secret key and secret access key from the specific bucket
+                .credentialsProvider(StaticCredentialsProvider.create(awsCreds))
                 .build();
-        return s3;
     }
 
     public String addAudioFile(String bucket, String objName, File file) {
-        s3 = getClient();
-        TransferManager transferManager = TransferManagerBuilder.standard().build();
+        AmazonS3 client = AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withRegion(DEFAULT_REGION_AmazonS3).build();
+
+        TransferManager transferManager = TransferManagerBuilder.standard()
+                .withS3Client(client).build();
         try {
             Upload transfer = transferManager.upload(bucket, objName, file);
             transfer.waitForCompletion();
@@ -67,8 +81,8 @@ public class S3Manager {
     }
 
 
-    /*
-    Experimental to deal w/ non transfer manager method
+
+
     private static byte[] audioFileToBytes(S3Client s3, String bucket, String objName) {
         try {
             //A request specifying bucket and key to download object as bytes
@@ -89,7 +103,7 @@ public class S3Manager {
         }
         return null;
     }
-     */
+
 
     public String listAllBucketObjNames(String bucket) {
         String allObjNames;
@@ -97,7 +111,7 @@ public class S3Manager {
             List<S3Object> listOfObj = listBucketObj(bucket);
             allObjNames = "Audio Files In Bucket : ";
             for (S3Object val : listOfObj) { //better for each loop
-                allObjNames = allObjNames + val.key() + ",";
+                allObjNames = allObjNames + val.key() + ", ";
             }
             return allObjNames.substring(0 , allObjNames.length()-1);
         } catch(AmazonServiceException s) {
@@ -110,8 +124,8 @@ public class S3Manager {
         return "";
     }
 
-    private List listBucketObj(String bucket) {
-        s3 = getClient();
+    public List listBucketObj(String bucket) {
+        S3Client s3 = getClient();
         try {
             ListObjectsRequest listOfObj = ListObjectsRequest
                     .builder()
@@ -130,8 +144,8 @@ public class S3Manager {
         return null;
     }
 
-    public String deleteBucketObj(String bucket, String obj) {
-        s3 = getClient();
+    public String deleteAudioFile(String bucket, String obj) {
+        S3Client s3 = getClient();
         ArrayList<ObjectIdentifier> deleteObj = new ArrayList<ObjectIdentifier>();
         deleteObj.add(ObjectIdentifier.builder().key(obj).build());
 

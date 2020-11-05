@@ -1,8 +1,10 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.time.*;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.transcribe.AmazonTranscribe;
 import com.amazonaws.services.transcribe.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,31 +19,37 @@ import software.amazon.awssdk.services.s3.model.S3Exception;
 
 public class S3Transcription {
 
-    private final Region DEFAULT_REGION = Region.US_WEST_2;
+    private final Regions DEFAULT_REGION_AmazonS3 = Regions.US_WEST_2;
 
-    //Sets up a unique job ID as per Amazon time conventions
-    private final String key = "Job : " + Clock.systemUTC().instant().toString() + "(UTC-07:00)";
+    private final BasicAWSCredentials credentials = new BasicAWSCredentials(
+            "INSERT",
+            "INSERT");
 
-    private AmazonTranscribe client = AmazonTranscribeAsyncClient.builder().build();
+    public AmazonTranscribe getClient() {
+        return AmazonTranscribeAsyncClient.builder()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withRegion(DEFAULT_REGION_AmazonS3).build();
+    } 
 
-    public ArrayList getTranscript(String obj, URL url) {
+    public ArrayList<JobItem> getTranscript(String obj, String bucketURI, String bucket) {
+        AmazonTranscribe client = getClient();
 
         try {
             //Set up media object
             Media media = new Media();
-            media.setMediaFileUri(url.toString());
+            media.setMediaFileUri(bucketURI);
 
             //Set up transcription job request
             StartTranscriptionJobRequest jobRequest = new StartTranscriptionJobRequest();
             jobRequest.setLanguageCode("en-US");
             jobRequest.setMedia(media);
-            jobRequest.setTranscriptionJobName(key);
-            jobRequest.setOutputBucketName("URL2");
+            jobRequest.setTranscriptionJobName(obj);
+            jobRequest.setOutputBucketName(bucket);
             client.startTranscriptionJob(jobRequest);
 
             //Set up get request for transcript
             GetTranscriptionJobRequest transcriptRequest = new GetTranscriptionJobRequest();
-            transcriptRequest.setTranscriptionJobName(key);
+            transcriptRequest.setTranscriptionJobName(obj);
 
             //Set up get result for transcript
             GetTranscriptionJobResult transcriptResult = new GetTranscriptionJobResult();
@@ -53,7 +61,7 @@ public class S3Transcription {
             String transcriptURI = transcriptionJob.getTranscript().getTranscriptFileUri();
 
             //add objects by deserializing json
-            ArrayList list = new ArrayList<JobItem>();
+            ArrayList<JobItem> list = new ArrayList<JobItem>();
             if(transcriptionJob.getTranscriptionJobStatus().equals("COMPLETED")) {
                 JobItem object = deserializeJSON(transcriptURI);
                 list.add(object);
@@ -66,6 +74,7 @@ public class S3Transcription {
             System.out.println("Error : " + e.getMessage());
             System.exit(1);
         }
+
         return null;
     }
 
@@ -88,6 +97,7 @@ public class S3Transcription {
     }
 
     private ArrayList getStoredTranscripts(String obj, URL url) {
+        AmazonTranscribe client = getClient();
         try {
             //Sets up request syntax
             ListTranscriptionJobsRequest request = new ListTranscriptionJobsRequest();
