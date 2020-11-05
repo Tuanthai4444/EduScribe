@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: software.amazon.awssdk:aws-ion-protocol:2.10.54">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/software/amazon/awssdk/aws-ion-protocol/2.10.54/aws-ion-protocol-2.10.54.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/software/amazon/awssdk/aws-ion-protocol/2.10.54/aws-ion-protocol-2.10.54-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/software/amazon/awssdk/aws-ion-protocol/2.10.54/aws-ion-protocol-2.10.54-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
