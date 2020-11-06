@@ -101,4 +101,5 @@ public final class UnitTests {
         ArrayList<JobItem> list = transcriptionManager.getTranscript("Transcription" + 7, uriForBucket, bucket);
         System.out.println(list.toString());
     }
+
 }

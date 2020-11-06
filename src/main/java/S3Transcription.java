@@ -96,7 +96,7 @@ public class S3Transcription {
         return null;
     }
 
-    private ArrayList getStoredTranscripts(String obj, URL url) {
+    private ArrayList getStoredTranscripts() {
         AmazonTranscribe client = getClient();
         try {
             //Sets up request syntax

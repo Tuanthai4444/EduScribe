@@ -22,19 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f31a38b-e678-439c-9814-57eeb6ed45a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/UnitTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8f31a38b-e678-439c-9814-57eeb6ed45a1" name="Default Changelist" comment="Finished testing S3Manager and S3Transcription">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/S3Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/S3Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/S3Transcription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/S3Transcription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UploadTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/S3Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/S3Manager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/S3Transcription.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/S3Transcription.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/UploadTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UnitTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +142,14 @@
       <option name="presentableId" value="Default" />
       <updated>1596192806108</updated>
     </task>
+    <task id="LOCAL-00001" summary="Finished testing S3Manager and S3Transcription">
+      <created>1604608324280</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1604608324280</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +163,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Finished testing S3Manager and S3Transcription" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished testing S3Manager and S3Transcription" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1815" height="813" key="GridCell.Tab.0.bottom" timestamp="1604581259962">
@@ -186,5 +189,9 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="471" y="114" key="SettingsEditor/62.0.1858.1080@62.0.1858.1080" timestamp="1604562295508" />
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2" timestamp="1604608330881">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1604608330881" />
   </component>
 </project>
