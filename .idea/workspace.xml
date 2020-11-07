@@ -22,10 +22,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f31a38b-e678-439c-9814-57eeb6ed45a1" name="Default Changelist" comment="Finished testing S3Manager and S3Transcription">
+    <list default="true" id="8f31a38b-e678-439c-9814-57eeb6ed45a1" name="Default Changelist" comment="Testing out Lambda">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_sts_1_11_895.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TokenSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_core_1_11_845.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_core_1_11_895.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_amazonaws_jmespath_java_1_11_845.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_amazonaws_jmespath_java_1_11_895.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_attoparser_attoparser_2_0_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_0_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_java8time_3_0_1_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_9_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_9_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_5_RELEASE.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/S3Transcription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/S3Transcription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UnitTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transcriber Aid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Transcriber Aid.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +45,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -149,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604608324280</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Testing out Lambda">
+      <created>1604648601837</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1604648601837</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,7 +183,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Finished testing S3Manager and S3Transcription" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished testing S3Manager and S3Transcription" />
+    <MESSAGE value="Testing out Lambda" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing out Lambda" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1815" height="813" key="GridCell.Tab.0.bottom" timestamp="1604581259962">
@@ -185,13 +203,21 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state width="1815" height="813" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1604581259962" />
+    <state x="56" y="195" key="Maven.ArtifactSearchDialog" timestamp="1604733403551">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="56" y="195" key="Maven.ArtifactSearchDialog/62.0.1858.1080@62.0.1858.1080" timestamp="1604733403551" />
     <state x="471" y="114" key="SettingsEditor" timestamp="1604562295508">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="471" y="114" key="SettingsEditor/62.0.1858.1080@62.0.1858.1080" timestamp="1604562295508" />
-    <state x="583" y="273" key="Vcs.Push.Dialog.v2" timestamp="1604608330881">
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2" timestamp="1604648605841">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state x="583" y="273" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1604608330881" />
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1604648605841" />
+    <state x="647" y="250" key="run.anything.popup" timestamp="1604734301708">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="647" y="250" key="run.anything.popup/62.0.1858.1080@62.0.1858.1080" timestamp="1604734301708" />
   </component>
 </project>
