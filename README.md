@@ -59,5 +59,5 @@ code reviews/testing.
 **Long Term Goals**
 - Swap To A Different Storage System To Consolidate Multiple APIs :x:
 - Add More APIs :x:
-- Look For A Way To Get Away From AWS Lambda And CloudWatch :x:
+- Look For A Way To Get Away From In-Code Lambdas/Rule Connections :x:
 - Move Into Mobile App Conversion :x:
