@@ -30,15 +30,15 @@ code reviews/testing.
 - Uploading Files To S3 Bucket :heavy_check_mark:
 - Transcribing Files :heavy_check_mark:
 - Asynchronous Streaming Data Input :heavy_check_mark:
-- Synchronous Thread Pool Usage :heavy_exclamation_mark: Bugs
+- Synchronous Thread Pool Usage :heavy_exclamation_mark: *Bugs*
 - Transcription Data Storage :heavy_check_mark:
-- Token System :heavy_exclamation_mark: Need to change to MF Validation or Secret Access
+- Token System :heavy_exclamation_mark: *Need to change to MF Validation or Secret Access*
 - Lambda Triggering With CloudWatch :heavy_check_mark:
 - CloudWatch Rule Implementations :heavy_exclamation_mark:
-- Report System :heavy_exclamation_mark: Bugs
-- Multiple Speaker Configuration :heavy_exclamation_mark: Bugs
-- Different Microphone Configuration :heavy_exclamation_mark: Redoing microphones
-- Customizable Dictionaries :heavy_exclamation_mark: Bugs
+- Report System :heavy_exclamation_mark: *Bugs*
+- Multiple Speaker Configuration :heavy_exclamation_mark: *Bugs*
+- Different Microphone Configuration :heavy_exclamation_mark: *Redoing microphones*
+- Customizable Dictionaries :heavy_exclamation_mark: *Bugs*
 - Output Microphone Stream Input As Sound File :x:
 - Allow For More Audio File Acceptance :x:
 - Chunk Transcription Only :x:
@@ -52,13 +52,13 @@ code reviews/testing.
 - Synchronous Thread Pool Usage :x:
 
 **Front End**
-- CSS :heavy_exclamation_mark: Unintuitive And Ugly
-- HTML :heavy_exclamation_mark: Unintuitive And Ugly
- - Optional Usage Of Template..
+- CSS :heavy_exclamation_mark: *Unintuitive And Ugly*
+- HTML :heavy_exclamation_mark: *Unintuitive And Ugly*
+ - *Optional Usage Of Template..*
 - JavaScript :x:
 
 **Long Term Goals**
 - Swap To A Different Storage System To Consolidate Multiple APIs :x:
 - Add More APIs :x:
-- Look For A Way To Get Away From AWS Lambda And CloudWatch
+- Look For A Way To Get Away From AWS Lambda And CloudWatch :x:
 - Move Into Mobile App Conversion :x:
