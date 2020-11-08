@@ -1,3 +1,5 @@
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.SdkClientException;
 import com.amazonaws.auth.BasicSessionCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
@@ -5,40 +7,46 @@ import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder
 import com.amazonaws.services.securitytoken.model.AssumeRoleRequest;
 import com.amazonaws.services.securitytoken.model.AssumeRoleResult;
 import com.amazonaws.services.securitytoken.model.Credentials;
-
+import com.amazonaws.services.securitytoken.model.GetSessionTokenRequest;
 
 
 public class TokenSystem {
 
-    private String region;
-    private String arn ;
+    private final String region = "";
+    private final String arn = "arn:aws:s3:::disability-aid-us-west2";
     private String roleSession;
-    private String bucket;
 
-    public TokenSystem(String clientRegion, String applicationArn, String clientRole, String applicationBucket) {
-        this.region = clientRegion;
-        this.arn = applicationArn;
+    public TokenSystem(String clientRole, String applicationBucket) {
         this.roleSession = clientRole;
-        this.bucket = applicationBucket;
     }
 
     public BasicSessionCredentials getCredentials() {
-        AWSSecurityTokenService tokenProvider = AWSSecurityTokenServiceClientBuilder.standard()
-                .withCredentials(new ProfileCredentialsProvider())
-                .withRegion(region)
-                .build();
+        try {
+            AWSSecurityTokenService tokenProvider = AWSSecurityTokenServiceClientBuilder.standard()
+                    .withCredentials(new ProfileCredentialsProvider())
+                    .withRegion(region)
+                    .build();
 
-        AssumeRoleRequest giveRole = new AssumeRoleRequest().withRoleArn(region).withRoleSessionName(roleSession);
-        AssumeRoleResult getRole = tokenProvider.assumeRole(giveRole);
-        Credentials sessionCred = getRole.getCredentials();
+            GetSessionTokenRequest tokenRequest = new GetSessionTokenRequest();
+            tokenRequest.setDurationSeconds(3600);
 
+            AssumeRoleRequest giveRole = new AssumeRoleRequest().withRoleArn(arn).withRoleSessionName(roleSession);
 
-        BasicSessionCredentials AWSCreds = new BasicSessionCredentials(
-                sessionCred.getAccessKeyId(),
-                sessionCred.getSecretAccessKey(),
-                sessionCred.getSessionToken());
+            AssumeRoleResult getRole = tokenProvider.assumeRole(giveRole);
 
-        return AWSCreds;
+            Credentials tokenCredentials = getRole.getCredentials();
+
+            BasicSessionCredentials AWSCreds = new BasicSessionCredentials(
+                    tokenCredentials.getAccessKeyId(),
+                    tokenCredentials.getSecretAccessKey(),
+                    tokenCredentials.getSessionToken());
+
+            return AWSCreds;
+        } catch (AmazonClientException e) {
+            System.out.println("Error : " + e.getMessage());
+            System.exit(1);
+        }
+        return null;
     }
 
 }

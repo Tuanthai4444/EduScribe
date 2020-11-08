@@ -94,8 +94,8 @@ public class S3Manager {
 
             ResponseBytes<GetObjectResponse> objBytes = s3.getObjectAsBytes(objRequest);
             return objBytes.asByteArray();
-        } catch(AmazonServiceException s) { //Both errors here to isolate and know where it occurs
-            System.out.println("Error : " + s.getMessage());
+        } catch(AmazonServiceException e) { //Both errors here to isolate and know where it occurs
+            System.out.println("Error : " + e.getMessage());
             System.exit(1);
         } catch(S3Exception e) {
             System.out.println("Error : " + e.getMessage());
