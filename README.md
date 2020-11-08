@@ -34,7 +34,7 @@ code reviews/testing.
 - Transcription Data Storage :heavy_check_mark:
 - Token System :heavy_exclamation_mark: *Need to change to MF Validation or Secret Access*
 - Lambda Triggering With CloudWatch :heavy_check_mark:
-- CloudWatch Rule Implementations :heavy_exclamation_mark:
+- CloudWatch Rule Implementations :heavy_check_mark:
 - Report System :heavy_exclamation_mark: *Bugs*
 - Multiple Speaker Configuration :heavy_exclamation_mark: *Bugs*
 - Different Microphone Configuration :heavy_exclamation_mark: *Redoing microphones*
@@ -42,7 +42,6 @@ code reviews/testing.
 - Output Microphone Stream Input As Sound File :x:
 - Allow For More Audio File Acceptance :x:
 - Chunk Transcription Only :x:
-
 
 **Google Speech**
 - Uploading Files To Cloud Storage Bucket :heavy_check_mark:
@@ -54,7 +53,7 @@ code reviews/testing.
 **Front End**
 - CSS :heavy_exclamation_mark: *Unintuitive And Ugly*
 - HTML :heavy_exclamation_mark: *Unintuitive And Ugly*
- - *Optional Usage Of Template..*
+  - *Optional Usage Of Template..*
 - JavaScript :x:
 
 **Long Term Goals**
