@@ -2,6 +2,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.SdkClientException;
 import com.amazonaws.auth.BasicSessionCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder;
 import com.amazonaws.services.securitytoken.model.AssumeRoleRequest;
@@ -12,11 +13,11 @@ import com.amazonaws.services.securitytoken.model.GetSessionTokenRequest;
 
 public class TokenSystem {
 
-    private final String region = "";
-    private final String arn = "arn:aws:s3:::disability-aid-us-west2";
     private String roleSession;
+    private final Regions REGION = Regions.US_WEST_2;
+    private final String ARN = "arn:aws:s3:::disability-aid-us-west2";
 
-    public TokenSystem(String clientRole, String applicationBucket) {
+    public TokenSystem(String clientRole) {
         this.roleSession = clientRole;
     }
 
@@ -24,13 +25,13 @@ public class TokenSystem {
         try {
             AWSSecurityTokenService tokenProvider = AWSSecurityTokenServiceClientBuilder.standard()
                     .withCredentials(new ProfileCredentialsProvider())
-                    .withRegion(region)
+                    .withRegion(REGION)
                     .build();
 
             GetSessionTokenRequest tokenRequest = new GetSessionTokenRequest();
             tokenRequest.setDurationSeconds(3600);
 
-            AssumeRoleRequest giveRole = new AssumeRoleRequest().withRoleArn(arn).withRoleSessionName(roleSession);
+            AssumeRoleRequest giveRole = new AssumeRoleRequest().withRoleArn(ARN).withRoleSessionName(roleSession);
 
             AssumeRoleResult getRole = tokenProvider.assumeRole(giveRole);
 
@@ -40,6 +41,8 @@ public class TokenSystem {
                     tokenCredentials.getAccessKeyId(),
                     tokenCredentials.getSecretAccessKey(),
                     tokenCredentials.getSessionToken());
+
+
 
             return AWSCreds;
         } catch (AmazonClientException e) {
