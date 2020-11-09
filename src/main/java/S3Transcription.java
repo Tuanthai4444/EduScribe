@@ -14,7 +14,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import com.amazonaws.services.transcribe.AmazonTranscribeAsyncClient;
 
-import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 
 public class S3Transcription {
