@@ -1,10 +1,14 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3URI;
 import com.amazonaws.services.transcribe.AmazonTranscribe;
 import com.amazonaws.services.transcribe.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +20,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import com.amazonaws.services.transcribe.AmazonTranscribeAsyncClient;
 
+import software.amazon.awssdk.core.ResponseInputStream;
+import software.amazon.awssdk.core.sync.ResponseTransformer;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 import software.amazon.awssdk.services.s3.model.S3Exception;
+import software.amazon.awssdk.services.s3.model.S3Object;
 
 public class S3Transcription {
 
@@ -63,7 +73,7 @@ public class S3Transcription {
 
 
 
-    public ArrayList<JobItem> createJobItems(String obj) {
+    public String createJobItems(String obj, S3Client s3) {
         AmazonTranscribe client = getClient();
 
         try {
@@ -78,16 +88,23 @@ public class S3Transcription {
             //Store request for transcript into transcriptionJob object
             TranscriptionJob transcriptionJob = new TranscriptionJob();
             transcriptionJob = transcriptResult.getTranscriptionJob();
-            String transcriptURI = transcriptionJob.getTranscript().toString();
+            String transcriptURI = transcriptionJob.getTranscript().getTranscriptFileUri();
 
-            //add objects by deserializing json
-            ArrayList<JobItem> list = new ArrayList<JobItem>();
-            if (transcriptionJob.getTranscriptionJobStatus().equals("COMPLETED")) {
-                JobItem object = deserializeJSONWithObjectMapper(transcriptURI);
-                list.add(object);
-            }
-            return list;
+            AmazonS3URI objectURI = new AmazonS3URI(transcriptURI);
 
+            GetObjectRequest objRequest = GetObjectRequest.builder()
+                                            .bucket(objectURI.getBucket())
+                                            .key(objectURI.getKey())
+                                            .build();
+
+            ResponseInputStream<GetObjectResponse> s3InputStream = s3.getObject(objRequest, ResponseTransformer.toInputStream());
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(s3InputStream));
+            Gson gson = new Gson();
+            JobItem jobItem = gson.fromJson(reader, JobItem.class);
+
+            String output = (jobItem.getResults().getTranscripts())[0].getTranscript();
+            return output;
         } catch(AmazonTranscribeException t) {
             System.out.println("Error : " + t.getMessage());
             System.exit(1);
@@ -98,20 +115,6 @@ public class S3Transcription {
         return null;
     }
 
-    /*
-    private JobItem deserializeJSONWithGson(String uri) {
-        try {
-            Gson gson = new Gson();
-
-
-        } catch (IOException e) {
-            System.out.println("Error : " + e.getMessage());
-            System.exit(1);
-        }
-        return null;
-    }
-     */
-
     private JobItem deserializeJSONWithObjectMapper(String uri) {
         try {
             //Apache httpclient get json
@@ -119,7 +122,7 @@ public class S3Transcription {
             HttpGet httpGet = new HttpGet(uri);
             HttpResponse response = httpClient.execute(httpGet);
 
-            //deserialize and turn json to jobitem object
+            //deserialize and turn json to JobItem object
             ObjectMapper objectMapper = new ObjectMapper();
             JobItem item = objectMapper.readValue(response.getEntity().getContent(), JobItem.class);
             return item;

@@ -156,7 +156,7 @@ public class S3Manager {
                     .delete(Delete.builder().objects(deleteObj).build())
                     .build();
             s3.deleteObjects(deleteRequest);
-            return obj + " deleted successfully from bucket " + BUCKET;
+            return obj + " deleted successfully from bucket";
         } catch(AmazonServiceException s) {
             System.out.println("Error : " + s.getMessage());
             System.exit(1);

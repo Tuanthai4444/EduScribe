@@ -1,7 +1,11 @@
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.S3ClientBuilder;
 
 import java.io.File;
 import java.time.Clock;
@@ -11,13 +15,24 @@ import static org.junit.Assert.*;
 
 public final class UnitTests {
 
-    private final String uriBucket = "..";
+    private final String uriBucket = "s3://disability-aid-us-west2/";
 
     private final S3Manager bucketManager = new S3Manager();
 
     private final S3Transcription transcriptionManager = new S3Transcription();
 
     private final File mp3File = new File("C:\\Users\\tuant\\OneDrive\\Documents\\EduScribe testing\\TestAudio.mp3");
+
+    private final Region DEFAULT_REGION_S3Client = Region.US_WEST_2;
+
+    private final AwsBasicCredentials awsCreds = AwsBasicCredentials.create(
+            "..",
+            "..");
+
+    private final S3Client s3 = S3Client.builder()
+            .region(DEFAULT_REGION_S3Client)
+            .credentialsProvider(StaticCredentialsProvider.create(awsCreds))
+            .build();
 
     @Rule
     public Timeout globalTimeout = Timeout.seconds(300);
@@ -96,13 +111,13 @@ public final class UnitTests {
         assertEquals("Successfully added new audio file", status);
 
         String uriForBucket = uriBucket + file;
-        String transcripts = transcriptionManager.getTranscript("bleh2", uriForBucket);
+        String transcripts = transcriptionManager.getTranscript("bleh4", uriForBucket);
         System.out.println(transcripts);
     }
 
     @Test
     public void transcriptionDeserialize() {
-        ArrayList<JobItem> jobItems = transcriptionManager.createJobItems("bleh2");
+        String jobItems = transcriptionManager.createJobItems("bleh4", s3);
         System.out.println(jobItems);
     }
 
