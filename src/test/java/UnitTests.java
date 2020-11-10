@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
 
 public final class UnitTests {
 
+    /*
     private final S3Manager bucketManager = new S3Manager();
 
     private final S3Transcription transcriptionManager = new S3Transcription();
@@ -101,5 +102,7 @@ public final class UnitTests {
         ArrayList<JobItem> list = transcriptionManager.getTranscript("Transcription" + 7, uriForBucket, bucket);
         System.out.println(list.toString());
     }
+
+     */
 
 }
