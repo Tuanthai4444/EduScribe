@@ -38,13 +38,14 @@ public class S3Manager {
     private final Regions DEFAULT_REGION_AmazonS3 = Regions.US_WEST_2;
 
     private final BasicAWSCredentials credentials = new BasicAWSCredentials(
-            "INSERT",
-            "INSERT");
+            "..",
+            "..");
 
     private final AwsBasicCredentials awsCreds = AwsBasicCredentials.create(
-            "INSERT",
-            "INSERT");
+            "..",
+            "..");
 
+    private final String BUCKET = "disability-aid-us-west2";
 
     public S3Client getClient() {
         return S3Client.builder()
@@ -55,7 +56,7 @@ public class S3Manager {
                 .build();
     }
 
-    public String addAudioFile(String bucket, String objName, File file) {
+    public String addAudioFile(String objName, File file) {
         AmazonS3 client = AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withRegion(DEFAULT_REGION_AmazonS3).build();
@@ -63,7 +64,7 @@ public class S3Manager {
         TransferManager transferManager = TransferManagerBuilder.standard()
                 .withS3Client(client).build();
         try {
-            Upload transfer = transferManager.upload(bucket, objName, file);
+            Upload transfer = transferManager.upload(BUCKET, objName, file);
             transfer.waitForCompletion();
             transferManager.shutdownNow();
             return "Successfully added new audio file";
@@ -83,13 +84,13 @@ public class S3Manager {
 
 
 
-    private static byte[] audioFileToBytes(S3Client s3, String bucket, String objName) {
+    private byte[] audioFileToBytes(S3Client s3, String objName) {
         try {
             //A request specifying bucket and key to download object as bytes
             GetObjectRequest objRequest = GetObjectRequest
                     .builder()
                     .key(objName)
-                    .bucket(bucket)
+                    .bucket(BUCKET)
                     .build();
 
             ResponseBytes<GetObjectResponse> objBytes = s3.getObjectAsBytes(objRequest);
@@ -105,10 +106,10 @@ public class S3Manager {
     }
 
 
-    public String listAllBucketObjNames(String bucket) {
+    public String listAllBucketObjNames() {
         String allObjNames;
         try {
-            List<S3Object> listOfObj = listBucketObj(bucket);
+            List<S3Object> listOfObj = listBucketObj();
             allObjNames = "Audio Files In Bucket : ";
             for (S3Object val : listOfObj) { //better for each loop
                 allObjNames = allObjNames + val.key() + ", ";
@@ -124,12 +125,12 @@ public class S3Manager {
         return "";
     }
 
-    public List listBucketObj(String bucket) {
+    public List listBucketObj() {
         S3Client s3 = getClient();
         try {
             ListObjectsRequest listOfObj = ListObjectsRequest
                     .builder()
-                    .bucket(bucket)
+                    .bucket(BUCKET)
                     .build();
 
             ListObjectsResponse objResponse = s3.listObjects(listOfObj);
@@ -144,18 +145,18 @@ public class S3Manager {
         return null;
     }
 
-    public String deleteAudioFile(String bucket, String obj) {
+    public String deleteAudioFile(String obj) {
         S3Client s3 = getClient();
         ArrayList<ObjectIdentifier> deleteObj = new ArrayList<ObjectIdentifier>();
         deleteObj.add(ObjectIdentifier.builder().key(obj).build());
 
         try {
             DeleteObjectsRequest deleteRequest = DeleteObjectsRequest.builder()
-                    .bucket(bucket)
+                    .bucket(BUCKET)
                     .delete(Delete.builder().objects(deleteObj).build())
                     .build();
             s3.deleteObjects(deleteRequest);
-            return obj + " deleted successfully from bucket " + bucket;
+            return obj + " deleted successfully from bucket " + BUCKET;
         } catch(AmazonServiceException s) {
             System.out.println("Error : " + s.getMessage());
             System.exit(1);
@@ -166,11 +167,13 @@ public class S3Manager {
         return "No objects were deleted";
     }
 
-    public static void presignedUrlUpload(String bucket, String objKey) {
+
+
+    private void presignedUrlUpload(String objKey) {
         S3Presigner presigner = S3Presigner.create();
         try {
             PutObjectRequest objRequest = PutObjectRequest.builder()
-                    .bucket(bucket)
+                    .bucket(BUCKET)
                     .key(objKey)
                     .contentType("audio/mpeg")
                     .build();

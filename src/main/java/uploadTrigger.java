@@ -18,7 +18,6 @@ public class uploadTrigger implements RequestHandler<S3Event, String> {
         try {
             logger.info("S3Bucket Event Received: " + event);
 
-
             S3EventNotification.S3EventNotificationRecord eventRecords = event.getRecords().get(0);
             String s3Bucket = eventRecords.getS3().getBucket().getName();
             String s3Key = eventRecords.getS3().getObject().getUrlDecodedKey();
@@ -26,7 +25,7 @@ public class uploadTrigger implements RequestHandler<S3Event, String> {
             AmazonS3 s3Client = AmazonS3ClientBuilder.defaultClient();
             S3Object s3Object = s3Client.getObject(new GetObjectRequest(s3Bucket, s3Key));
 
-            System.out.println("Hello World : " + s3Object);
+            logger.info("STUFF STUFF STUFF " + s3Object.toString());
 
         } catch (AmazonServiceException e) {
             System.out.println("Error : " + e.getMessage());

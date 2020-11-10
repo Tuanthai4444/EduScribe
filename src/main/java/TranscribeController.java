@@ -11,8 +11,6 @@ import java.io.File;
 @Controller
 public class TranscribeController {
 
-    private static final String BUCKET = "disability-aid-us-west2";
-
     @Autowired
     private S3Manager s3Ops;
 
@@ -38,14 +36,14 @@ public class TranscribeController {
     @RequestMapping(value = "/getimages", method = RequestMethod.GET)
     @ResponseBody
     public String getImages(HttpServletRequest request, HttpServletResponse response) {
-        return s3Ops.listAllBucketObjNames(BUCKET);
+        return s3Ops.listAllBucketObjNames();
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
     public ModelAndView singleFileUpload(@RequestParam("file") File file) {
         String name = file.getName();
-        s3Ops.addAudioFile(BUCKET, name, file);
+        s3Ops.addAudioFile(name, file);
 
         return new ModelAndView(new RedirectView("audio-" + name));
     }
