@@ -23,20 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f31a38b-e678-439c-9814-57eeb6ed45a1" name="Default Changelist" comment="Lambda Untested Commit">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Transcriber Aid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Transcriber Aid.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/JobItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JobItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/S3Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/S3Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/S3Transcription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/S3Transcription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TranscribeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TranscribeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uploadTrigger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uploadTrigger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UnitTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/JobItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/JobItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/S3Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/S3Manager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/S3Transcription.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/S3Transcription.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/UnitTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/UnitTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,12 +73,22 @@
       <recent name="C:\Users\Tuan Thai\Documents\Transcriber Aid\src\main\resources\hmtl" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UnitTests.transcriptionDeserialize">
+  <component name="RunManager" selected="JUnit.UnitTests.addFile">
     <configuration name="UnitTests.addFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Transcriber Aid" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="UnitTests" />
       <option name="METHOD_NAME" value="addFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UnitTests.s3Client" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Transcriber Aid" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UnitTests" />
+      <option name="METHOD_NAME" value="s3Client" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -115,31 +113,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="[Local] lambdaTrigger" type="aws.lambda" factoryName="Local" temporary="true">
-      <option name="credentialProviderId" value="profile:default" />
-      <option name="regionId" value="us-west-2" />
-      <option name="debugHost" value="localhost" />
-      <option name="environmentVariables">
-        <map />
-      </option>
-      <option name="handler" value="lambdaTrigger" />
-      <option name="logicalFunctionName" />
-      <option name="memorySize" value="128" />
-      <option name="runtime" value="java11" />
-      <option name="templateFile" />
-      <option name="timeout" value="300" />
-      <option name="useTemplate" value="false" />
-      <option name="input" />
-      <option name="inputIsFile" value="false" />
-      <sam>
-        <option name="additionalBuildArgs" />
-        <option name="additionalLocalArgs" />
-        <option name="buildInContainer" value="false" />
-        <option name="dockerNetwork" />
-        <option name="skipImagePull" value="false" />
-      </sam>
-      <method v="2" />
     </configuration>
     <configuration name="[Local] uploadTrigger" type="aws.lambda" factoryName="Local" temporary="true" nameIsGenerated="true">
       <option name="credentialProviderId" value="profile:default" />
@@ -168,11 +141,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UnitTests.addFile" />
+        <item itemvalue="JUnit.UnitTests.s3Client" />
         <item itemvalue="JUnit.UnitTests.transcriptionDeserialize" />
         <item itemvalue="JUnit.UnitTests.transcription" />
-        <item itemvalue="JUnit.UnitTests.addFile" />
         <item itemvalue="AWS Lambda.[Local] uploadTrigger" />
-        <item itemvalue="AWS Lambda.[Local] lambdaTrigger" />
       </list>
     </recent_temporary>
   </component>
@@ -216,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604969351365</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Lambda Untested Commit">
+      <created>1604987247930</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1604987247930</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,22 +226,22 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="331" y="246" key="#com.intellij.ide.util.MemberChooser/62.0.1858.1080@62.0.1858.1080" timestamp="1604899820731" />
-    <state width="1815" height="240" key="GridCell.Tab.0.bottom" timestamp="1604986219070">
+    <state width="885" height="242" key="GridCell.Tab.0.bottom" timestamp="1604987694637">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="240" key="GridCell.Tab.0.bottom/62.0.1858.1080@62.0.1858.1080" timestamp="1604986219070" />
-    <state width="1815" height="240" key="GridCell.Tab.0.center" timestamp="1604986219070">
+    <state width="885" height="242" key="GridCell.Tab.0.bottom/62.0.1858.1080@62.0.1858.1080" timestamp="1604987694637" />
+    <state width="885" height="242" key="GridCell.Tab.0.center" timestamp="1604987694637">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="240" key="GridCell.Tab.0.center/62.0.1858.1080@62.0.1858.1080" timestamp="1604986219070" />
-    <state width="1815" height="240" key="GridCell.Tab.0.left" timestamp="1604986219070">
+    <state width="885" height="242" key="GridCell.Tab.0.center/62.0.1858.1080@62.0.1858.1080" timestamp="1604987694637" />
+    <state width="885" height="242" key="GridCell.Tab.0.left" timestamp="1604987694637">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="240" key="GridCell.Tab.0.left/62.0.1858.1080@62.0.1858.1080" timestamp="1604986219070" />
-    <state width="1815" height="240" key="GridCell.Tab.0.right" timestamp="1604986219070">
+    <state width="885" height="242" key="GridCell.Tab.0.left/62.0.1858.1080@62.0.1858.1080" timestamp="1604987694637" />
+    <state width="885" height="242" key="GridCell.Tab.0.right" timestamp="1604987694637">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="240" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1604986219070" />
+    <state width="885" height="242" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1604987694637" />
     <state x="521" y="195" key="Maven.ArtifactSearchDialog" timestamp="1604907178551">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
@@ -270,10 +250,10 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="255" y="83" key="SettingsEditor/62.0.1858.1080@62.0.1858.1080" timestamp="1604967928671" />
-    <state x="583" y="273" key="Vcs.Push.Dialog.v2" timestamp="1604969360996">
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2" timestamp="1604987251701">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state x="583" y="273" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1604969360996" />
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1604987251701" />
     <state x="647" y="250" key="run.anything.popup" timestamp="1604734301708">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>

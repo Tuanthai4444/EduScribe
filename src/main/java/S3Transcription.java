@@ -25,8 +25,8 @@ public class S3Transcription {
     private final String BUCKET = "disability-aid-transcription-us-west2";
 
     private final BasicAWSCredentials credentials = new BasicAWSCredentials(
-            "AKIAJHTD4DXGMCCKYLQA",
-            "EQ42YoBmUoUgnLO+cBSEuQ3BAjNypbEaOuZLNc4L");
+            "..",
+            "..");
 
     public AmazonTranscribe getClient() {
         return AmazonTranscribeAsyncClient.builder()
