@@ -32,7 +32,7 @@ code reviews/testing.
 - Asynchronous Streaming Data Input :heavy_check_mark:
 - Synchronous Thread Pool Usage :heavy_exclamation_mark: *Bugs*
 - Transcription Data Storage :heavy_check_mark:
-- Token System :heavy_exclamation_mark: *Need to change to MF Validation or Secret Access and Bugs W/ STS*
+- Token System :heavy_exclamation_mark: *Need to change to MF validation or Federation Token W/ MF authentification third party*
 - Lambda Triggers :heavy_check_mark:
 - CloudWatch Rule Implementations :heavy_check_mark:
 - Report System :heavy_exclamation_mark: *Bugs*
