@@ -35,6 +35,7 @@ code reviews/testing.
 - Token System :heavy_exclamation_mark: *Need to change to MF validation or Federation Token W/ MF authentification third party*
 - Lambda Triggers :heavy_check_mark:
 - CloudWatch Rule Implementations :heavy_check_mark:
+- Human Review Feedback Loop :heavy_exclamation_mark:
 - Report System :heavy_exclamation_mark: *Bugs*
 - Multiple Speaker Configuration :heavy_exclamation_mark: *Bugs*
 - Different Microphone Configuration :heavy_exclamation_mark: *Redoing microphones*
