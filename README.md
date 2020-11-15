@@ -44,7 +44,7 @@ code reviews/testing.
 - Report System :heavy_exclamation_mark: *Bugs*
 - Multiple Speaker Configuration :heavy_exclamation_mark: *Bugs*
 - Different Microphone Configuration :heavy_exclamation_mark: *Redoing microphones*
-- Customizable Dictionaries :heavy_exclamation_mark: *Bugs*
+- Customizable Dictionaries With Word Weight Options :heavy_exclamation_mark: *Bugs*
 - Output Microphone Stream Input As Sound File :x:
 - Allow For More Audio File Acceptance :x:
 - Chunk Transcription Only :x:
