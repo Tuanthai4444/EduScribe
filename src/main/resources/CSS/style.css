@@ -1,0 +1,71 @@
+/* Full Body */
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Container For All Headers*/
+.container{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+/* Navigation Bar All*/
+.nav-wrapper {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    margin: auto;
+}
+
+/* Left Side Header All */
+.left-side {
+    display: flex;
+}
+
+.left-side div {
+    margin-right: 30px;
+    font-size: 1em;
+}
+
+/* Navigation Bar Hover Effect All */
+.nav-link-wrapper {
+    height: 17px;
+}
+
+.nav-link-wrapper a {
+    color: #8a8a8a;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.nav-link-wrapper:hover {
+    border-bottom: 1px solid black;
+}
+
+.nav-link-wrapper a:hover {
+    color: black;
+}
+
+.active-nav-link {
+    border-bottom: 1px solid black;
+}
+
+.active-nav-link a {
+    color: black !important;
+}
+
+/* Right Side Header All */
+.right-side {
+    display: flex;
+}
+
+.logo img {
+    width: 100px;
+}
+
+/* Left Side Body Index */
