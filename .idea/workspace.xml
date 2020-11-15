@@ -22,16 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f31a38b-e678-439c-9814-57eeb6ed45a1" name="Default Changelist" comment="Lambda Untested Commit">
+    <list default="true" id="8f31a38b-e678-439c-9814-57eeb6ed45a1" name="Default Changelist" comment="Transcription Bug Fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/JobItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JobItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/S3Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/S3Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/S3Transcription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/S3Transcription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UnitTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/S3Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/S3Manager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/S3Transcription.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/S3Transcription.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/TranscribeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TranscribeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/UnitTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/UnitTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hmtl/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hmtl/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/JobItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/JobItem.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604987751633</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Transcription Bug Fixed">
+      <created>1605009329215</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605009329215</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,7 +216,8 @@
     <MESSAGE value="Finished testing S3Manager and S3Transcription" />
     <MESSAGE value="Testing out Lambda" />
     <MESSAGE value="Lambda Untested Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lambda Untested Commit" />
+    <MESSAGE value="Transcription Bug Fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transcription Bug Fixed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="743" y="364" key="#Notifications" timestamp="1604914925380">
@@ -225,22 +228,22 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="331" y="246" key="#com.intellij.ide.util.MemberChooser/62.0.1858.1080@62.0.1858.1080" timestamp="1604899820731" />
-    <state width="885" height="244" key="GridCell.Tab.0.bottom" timestamp="1605009307069">
+    <state width="885" height="244" key="GridCell.Tab.0.bottom" timestamp="1605009672538">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="885" height="244" key="GridCell.Tab.0.bottom/62.0.1858.1080@62.0.1858.1080" timestamp="1605009307069" />
-    <state width="885" height="244" key="GridCell.Tab.0.center" timestamp="1605009307068">
+    <state width="885" height="244" key="GridCell.Tab.0.bottom/62.0.1858.1080@62.0.1858.1080" timestamp="1605009672538" />
+    <state width="885" height="244" key="GridCell.Tab.0.center" timestamp="1605009672538">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="885" height="244" key="GridCell.Tab.0.center/62.0.1858.1080@62.0.1858.1080" timestamp="1605009307068" />
-    <state width="885" height="244" key="GridCell.Tab.0.left" timestamp="1605009307068">
+    <state width="885" height="244" key="GridCell.Tab.0.center/62.0.1858.1080@62.0.1858.1080" timestamp="1605009672538" />
+    <state width="885" height="244" key="GridCell.Tab.0.left" timestamp="1605009672538">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="885" height="244" key="GridCell.Tab.0.left/62.0.1858.1080@62.0.1858.1080" timestamp="1605009307068" />
-    <state width="885" height="244" key="GridCell.Tab.0.right" timestamp="1605009307068">
+    <state width="885" height="244" key="GridCell.Tab.0.left/62.0.1858.1080@62.0.1858.1080" timestamp="1605009672538" />
+    <state width="885" height="244" key="GridCell.Tab.0.right" timestamp="1605009672538">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="885" height="244" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1605009307068" />
+    <state width="885" height="244" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1605009672538" />
     <state x="521" y="195" key="Maven.ArtifactSearchDialog" timestamp="1604907178551">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
@@ -249,10 +252,10 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="255" y="83" key="SettingsEditor/62.0.1858.1080@62.0.1858.1080" timestamp="1604967928671" />
-    <state x="583" y="273" key="Vcs.Push.Dialog.v2" timestamp="1604987754712">
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2" timestamp="1605009333938">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state x="583" y="273" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1604987754712" />
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1605009333938" />
     <state x="647" y="250" key="run.anything.popup" timestamp="1604734301708">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
