@@ -1,26 +1,31 @@
 # EduScribe
 
-### What Does EduScribe Do?
+### Problem ###
+According to the DO-IT center, approximately 840,000+ students have disabilities 
+capable of impeding their capabilities to learn. With the current trajectory of modern education, 
+these numbers are expected to continuously rise. 
 
-EduScribe is an application geared towards creating speech to text 
-transcriptions from audio files or through microphone stream input. 
-The main goal is to create an easy to use application that can be used 
-to help students with disabilities or schedule conflictions. 
-We also want to design EduScribe in a unique and customizable manner, 
-such that any student can use the application to fit their needs and 
-circumstances.
+### Solution ###
+As per this problem, I intended to create an application that could 
+act as a remedy to this educational disparity. 
+This application named EduScribe allows for students to create transcripts 
+from real time streaming input or through audio file submissions. 
+EduScribe creates a distinction from other products through allowing 
+the application to be custom tailored by the student according to 
+their requirements and classes, whilst maintaining accurate transcription. 
 
-### How Does EduScribe Do This?
-
-In order to reach this goal, EduScribe utilizes multiple ASR APIs from
-major companies and cross references them for maximum accuracy. 
-To aid in customizability, EduScribe allows for the creation
-of customizable dictionaries that will help recognize less common words.
-EduScribe will also provide applications to help create these dictionaries. 
+### Forecasting ###
+EduScribe will tackle the problem of accuracy through means such as cross-referencing multiple ASR APIs,
+as well as implementing a human review feedback loop. 
+EduScribe will also provide automated dictionary creation open to 
+client interaction in order to give a unique user experience that is intuitive yet customizable. 
+Speed will be sacrificed for accuracy (cross referencing) however EduScribe 
+will neutralize this through synchronous processing of audio file chunks.
 Furthermore EduScribe will allow for setting a number of speakers
 to accomodate more than one lecturer as well as different microphone configurations.
 
-### EduScribe RoadMap
+
+### EduScribe RoadMap ###
 
 Code will not always reflect the full status of the application as much of the
 application is currently on my computer undergoing experimentation and
