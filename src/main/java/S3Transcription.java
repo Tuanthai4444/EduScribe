@@ -1,24 +1,31 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AWSCredentialsProviderChain;
+import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3URI;
 import com.amazonaws.services.transcribe.AmazonTranscribe;
-import com.amazonaws.services.transcribe.model.*;
+import com.amazonaws.services.transcribe.AmazonTranscribeAsyncClient;
+import com.amazonaws.services.transcribe.model.AmazonTranscribeException;
+import com.amazonaws.services.transcribe.model.GetTranscriptionJobRequest;
+import com.amazonaws.services.transcribe.model.GetTranscriptionJobResult;
+import com.amazonaws.services.transcribe.model.ListTranscriptionJobsRequest;
+import com.amazonaws.services.transcribe.model.ListTranscriptionJobsResult;
+import com.amazonaws.services.transcribe.model.Media;
+import com.amazonaws.services.transcribe.model.StartTranscriptionJobRequest;
+import com.amazonaws.services.transcribe.model.TranscriptionJob;
+import com.amazonaws.services.transcribe.model.TranscriptionJobSummary;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
-import com.amazonaws.services.transcribe.AmazonTranscribeAsyncClient;
 
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.core.sync.ResponseTransformer;
@@ -26,7 +33,6 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 import software.amazon.awssdk.services.s3.model.S3Exception;
-import software.amazon.awssdk.services.s3.model.S3Object;
 
 public class S3Transcription {
 
@@ -34,14 +40,12 @@ public class S3Transcription {
 
     private final String BUCKET = "disability-aid-transcription-us-west2";
 
-    private final BasicAWSCredentials credentials = new BasicAWSCredentials(
-            "..",
-            "..");
 
     public AmazonTranscribe getClient() {
         return AmazonTranscribeAsyncClient.builder()
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .withRegion(DEFAULT_REGION_AmazonS3).build();
+                .withCredentials(new EnvironmentVariableCredentialsProvider())
+                .withRegion(DEFAULT_REGION_AmazonS3)
+                .build();
     } 
 
     public String getTranscript(String obj, String bucketURI) {

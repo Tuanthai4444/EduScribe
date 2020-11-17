@@ -1,11 +1,9 @@
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
-import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
-import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.S3ClientBuilder;
 
 import java.io.File;
 import java.time.Clock;
@@ -25,13 +23,9 @@ public final class UnitTests {
 
     private final Region DEFAULT_REGION_S3Client = Region.US_WEST_2;
 
-    private final AwsBasicCredentials awsCreds = AwsBasicCredentials.create(
-            "..",
-            "..");
-
     private final S3Client s3 = S3Client.builder()
+            .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
             .region(DEFAULT_REGION_S3Client)
-            .credentialsProvider(StaticCredentialsProvider.create(awsCreds))
             .build();
 
     @Rule
