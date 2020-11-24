@@ -3,8 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.AWSCredentialsProviderChain;
 import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3URI;
@@ -76,8 +74,12 @@ public class S3Transcription {
      * places transcription JSON into the 
      * 'disability-aid-transcription-us-west2' bucket
      * 
+     * 
      * @param jobName the string name for the transcription job
      * @param bucketURI the string uri of the bucket's audio file
+     * @spec.effects 
+     * @exception AmazonTranscribeException if transcribe services fail
+     * @exception S3Exception if S3 services fail
      * @return confirmation for transcription start; not guaranteed 
      * confirmation for successful transcription
      */
@@ -115,6 +117,8 @@ public class S3Transcription {
      * @param jobName the string name for the transcription job
      * @param s3 the S3Client required to initialize input stream 
      * for POJO response of transcription JSON
+     * @exception AmazonTranscribeException if transcribe services fail
+     * @exception S3Exception if S3 services fail
      * @return string representation of only the transcript value
      */
     public String getTranscript(String jobName, S3Client s3) {
@@ -172,6 +176,7 @@ public class S3Transcription {
      * GSON used currently over object mapper
      * 
      * @param uri the string URI for the 'disability-aid-us-west2' bucket
+     * @exception IOException if object mapper input stream fails
      * @return JobItem that contains the JSON fields such as
      * jobName, results, accountID, etc.
      */
@@ -200,9 +205,11 @@ public class S3Transcription {
     /////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Gets all stored transcripts JSON and deserializes into
-     * JobItem objects and returns list of those JobItems
+     * Gets all stored transcripts JSON and deserializes into JobItem Object
+     * befoe returning all JobItems in a list
      * 
+     * @exception AmazonTranscribeException if transcribe services fail
+     * @exception S3Exception if S3 services fail
      * @return List of JobItems representing deserialized Transcript JSON
      */
     private ArrayList<JobItem> getStoredTranscripts() {
