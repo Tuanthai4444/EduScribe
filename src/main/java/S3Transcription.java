@@ -34,13 +34,30 @@ import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 
+
+/**
+ * Utilizes AWS Amazon Transcribe Client to transcribe Audio Files
+ * within the S3 bucket 'disability-aid-us-west2'. Allows for
+ * variety of different transcription options.
+ * 
+ * Audio files to be transcribed required to be within bucket - 
+ * 'disability-aid-us-west2'
+ * 
+ * Finished transciptions are required to be within bucket -
+ * 'disability-aid-transcription-us-west2'
+ */
+
 public class S3Transcription {
+
 
     private final Regions DEFAULT_REGION_AmazonS3 = Regions.US_WEST_2;
 
     private final String BUCKET = "disability-aid-transcription-us-west2";
 
-
+    /**
+     * Utilizes a builder to build Amazon transcribe client requiring
+     * valid parameters region and credentials
+     */
     public AmazonTranscribe getClient() {
         return AmazonTranscribeAsyncClient.builder()
                 .withCredentials(new EnvironmentVariableCredentialsProvider())
@@ -48,7 +65,17 @@ public class S3Transcription {
                 .build();
     } 
 
-    public String getTranscript(String obj, String bucketURI) {
+    /**
+     * Begins the transcription process for the audio file and
+     * places transcription JSON into the 
+     * 'disability-aid-transcription-us-west2' bucket
+     * 
+     * @param jobName the string name for the transcription job
+     * @param bucketURI the string uri of the bucket's audio file
+     * @return confirmation for transcription start; not guaranteed 
+     * confirmation for successful transcription
+     */
+    public String startTranscription(String jobName, String bucketURI) {
         AmazonTranscribe client = getClient();
 
         try {
@@ -60,7 +87,7 @@ public class S3Transcription {
             StartTranscriptionJobRequest jobRequest = new StartTranscriptionJobRequest();
             jobRequest.setLanguageCode("en-US");
             jobRequest.setMedia(media);
-            jobRequest.setTranscriptionJobName(obj);
+            jobRequest.setTranscriptionJobName(jobName);
             jobRequest.setOutputBucketName(BUCKET);
             client.startTranscriptionJob(jobRequest);
 
@@ -75,15 +102,22 @@ public class S3Transcription {
         return null;
     }
 
-
-
-    public String createJobItems(String obj, S3Client s3) {
+    /**
+     * Gets the string representation of the transcript through
+     * deserializing the JSON utilizing GSON.
+     * 
+     * @param jobName the string name for the transcription job
+     * @param s3 the S3Client required to initialize input stream 
+     * for POJO response of transcription JSON
+     * @return string representation of only the transcript value
+     */
+    public String getTranscript(String jobName, S3Client s3) {
         AmazonTranscribe client = getClient();
 
         try {
             //Set up get request for transcript
             GetTranscriptionJobRequest transcriptRequest = new GetTranscriptionJobRequest();
-            transcriptRequest.setTranscriptionJobName(obj);
+            transcriptRequest.setTranscriptionJobName(jobName);
 
             //Set up get result for transcript
             GetTranscriptionJobResult transcriptResult = new GetTranscriptionJobResult();
@@ -119,11 +153,19 @@ public class S3Transcription {
         return null;
     }
 
-    private JobItem deserializeJSONWithObjectMapper(String uri) {
+    /**
+     * Deserialize the transcript JSON with a Jackson Format 
+     * objectMapper
+     * 
+     * @param uri the string URI for the 'disability-aid-us-west2' bucket
+     * @return JobItem that contains the JSON fields such as
+     * jobName, results, accountID, etc.
+     */
+    private JobItem deserializeJSONWithObjectMapper(String bucketURI) {
         try {
             //Apache httpclient get json
             HttpClient httpClient = HttpClients.createDefault();
-            HttpGet httpGet = new HttpGet(uri);
+            HttpGet httpGet = new HttpGet(bucketURI);
             HttpResponse response = httpClient.execute(httpGet);
 
             //deserialize and turn json to JobItem object
@@ -137,6 +179,11 @@ public class S3Transcription {
         return null;
     }
 
+    /**
+     * Gets all stored transcripts within transcript bucket
+     * 
+     * @return
+     */
     private ArrayList<JobItem> getStoredTranscripts() {
         AmazonTranscribe client = getClient();
         try {

@@ -105,13 +105,13 @@ public final class UnitTests {
         assertEquals("Successfully added new audio file", status);
 
         String uriForBucket = uriBucket + file;
-        String transcripts = transcriptionManager.getTranscript("bleh4", uriForBucket);
+        String transcripts = transcriptionManager.startTranscription("bleh4", uriForBucket);
         System.out.println(transcripts);
     }
 
     @Test
     public void transcriptionDeserialize() {
-        String jobItems = transcriptionManager.createJobItems("bleh4", s3);
+        String jobItems = transcriptionManager.getTranscript("bleh4", s3);
         System.out.println(jobItems);
     }
 

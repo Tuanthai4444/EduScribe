@@ -13,6 +13,12 @@ import com.amazonaws.services.securitytoken.model.GetSessionTokenRequest;
 
 public class TokenSystem {
 
+    /**
+     * 
+     * 
+     * 
+     */
+
     private String roleSession;
     private final Regions REGION = Regions.US_WEST_2;
     private final String ARN = "arn:aws:s3:::disability-aid-us-west2";
