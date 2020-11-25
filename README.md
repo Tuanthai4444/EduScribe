@@ -61,9 +61,11 @@ code reviews/testing.
 - HTML :heavy_exclamation_mark: *Unintuitive And Ugly*
   - *Optional Usage Of Template..*
 - JavaScript :x:
+- Compilation Into Larger Portfolio :x:
 
 **Long Term Goals**
 - Swap To A Different Storage System To Consolidate Multiple APIs :x:
 - Add More APIs :x:
 - Look For A Way To Get Away From In-Code Lambdas/Rule Connections :x:
 - Move Into Mobile App Conversion :x:
+- Look Into Spark and Scala
